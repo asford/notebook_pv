@@ -1,1 +1,1 @@
-from .pdb_display_widget import PDBDisplayWidget
+from .molecule_display_widget import MoleculeDisplayWidget

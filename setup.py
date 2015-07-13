@@ -24,7 +24,7 @@ setup(
     name='notebook_pv',
     version=__version__,
     description='Bio-pv integration for IPython notebooks.',
-    long_description=open('README.rst').read(),
+    long_description="",
     author='Alex Ford',
     author_email='a.sewall.ford@gmail.com',
     url='https://github.com/asford/notebook_pv',

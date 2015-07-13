@@ -2,5 +2,3 @@
 
 __author__ = 'Alex Ford'
 __email__ = 'a.sewall.ford@gmail.com'
-
-from .widgets import PDBDisplayWidget
