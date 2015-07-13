@@ -62,7 +62,6 @@ define([
 
             this.listenTo(this.model, "change:views", this.render_views);
             this.listenTo(this.model, "change:structure", this.render_views);
-            // TODO trigger animation events with throttled reflow handler
         },
 
         handle_nav_start : function() {
@@ -131,17 +130,20 @@ define([
             this.$el.find(".viewer_sidebar tbody").html( view_table_template( { views : this.model.get("views") }) );
             
             this.structure = pv.mol.docmodel.objToMol(this.model.get("structure"));
+            this.structure_doc = pv.mol.docmodel.molToDoc(this.structure);
+
             pv.mol.assignHelixSheet( this.structure );
             
             var views = this.model.get("views");
 
             this.viewer.clear();
 
-            console.log("Views: ", views);
-
             for( var v = 0; v < views.length; v++) {
-              console.log("Rendering: ", views[v])
-              pv.declarativeView.renderView( this.viewer, v.toString(), this.structure, views[v] );
+              console.log("Rendering: ", views[v]);
+              var structure_view = this.structure_doc.selectView( views[v].selection );
+              console.log("View: ", structure_view);
+               
+              pv.declarativeView.renderView( this.viewer, v.toString(), structure_view, views[v] );
             }
 
             //Zoom
