@@ -32,6 +32,7 @@
 
 .MoleculeDisplayView .viewer_content {
   height: 80vh;
+  overflow: hidden;
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 200px;

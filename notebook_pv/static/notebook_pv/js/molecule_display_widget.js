@@ -65,22 +65,23 @@ define([
         },
 
         handle_nav_start : function() {
-          this.in_reflow = true;
+          //this.in_reflow = true;
           this.$el.find(".viewer_main_container").toggleClass('hide_sidebar');
 
-          window.requestAnimationFrame( _.bind( this.reflow_animation_handler, this) );
+          //window.requestAnimationFrame( _.bind( this.reflow_animation_handler, this) );
         },
 
-        reflow_animation_handler : function() {
-          this.handle_reflow();
+        //reflow_animation_handler : function() {
+          //this.handle_reflow();
 
-          if ( this.in_reflow ) {
-            window.requestAnimationFrame( _.bind( this.reflow_animation_handler, this) );
-          }
-        },
+          //if ( this.in_reflow ) {
+            //window.requestAnimationFrame( _.bind( this.reflow_animation_handler, this) );
+          //}
+        //},
 
         handle_nav_end : function() {
-          this.in_reflow = false;
+          //this.in_reflow = false;
+          this.handle_reflow();
         },
 
         handle_reflow : _.throttle(function() {
