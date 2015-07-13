@@ -1,0 +1,73 @@
+<nav class="navbar navbar-default"><div class="container-fluid">
+
+ <ul class="nav nav-pills navbar-nav">
+  <li role="presentation"><a href="#">View</a></li>
+
+  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Raw<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="#" data-toggle="modal" data-target="#MDV-object-modal<%= id_suffix %>">Object</a></li>
+    </ul>
+  </li>
+ </ul>
+</div></nav>
+
+<div class="modal fade MDV-object-modal" id="MDV-object-modal<%= id_suffix %>" tabindex="-1" role="dialog" aria-labelledby="MDV-object-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Object Model</h4>
+      </div>
+      <div class="modal-body">
+        <pre> </pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='container-fluid MDV-main-container'>
+<div class='row-fluid'>
+    <div class='col-md-3 viewer_sidebar' id="MDV-sidebar<%= id_suffix %>">
+        <table width="100%">
+          <thead>
+            <th></th><th></th>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+
+          <form name="view_input" class="view_input" >
+            <div class="form-group">
+              <label>Selection</label>
+              <input name="selection" class="form-control" type="text" placeholder="Selection"></input>
+            </div>
+            <div class="form-group">
+              <label>Mode</label>
+              <select name="mode" class="form-control">
+                <option value="cartoon">Cartoon</option>
+                <option value="spheres">Spheres</option>
+                <option value="lines">Lines</option>
+                <option value="ballsAndSticks">Balls and Sticks</option>
+                <option value="points">Points</option>
+                <option value="tube">Tube</option>
+                <option value="trace">Trace</option>
+                <option value="sline">Smooth Line Trace</option>
+                <option value="lineTrace">Line Trace</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Color</label>
+              <input name="color" class="form-control" type="text" placeholder="Color" list="color_options"></input>
+              <datalist id="color_options">
+              </datalist>
+            </div>
+
+            <button type="button" class="add_view btn btn-primary btn-lg btn-block">Add</button>
+          </form>
+        
+    </div>
+
+    <div class='col-md-9 viewer_container' id="MDV-viewer<%= id_suffix %>">
+    </div>
+</div>
+</div>

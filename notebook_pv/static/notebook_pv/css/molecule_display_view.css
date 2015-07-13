@@ -1,0 +1,22 @@
+/* namespaced CSS directives */
+.MoleculeDisplayView {
+  width: 100%;
+}
+.MoleculeDisplayView .MDV-main-container{
+  width: 100%;
+}
+
+.MoleculeDisplayView .viewer_container{
+  height: 80vh;
+}
+
+.MoleculeDisplayView .viewer_sidebar .btn-group.view_control {
+  margin : 8px;
+  padding: 0px;
+  display : block;
+}
+
+.MoleculeDisplayView select.form-control {
+  margin-right: 0px;
+  margin-left: 0px;
+}
