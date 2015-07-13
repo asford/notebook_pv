@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default"><div class="container-fluid">
 
  <ul class="nav nav-pills navbar-nav">
-  <li role="presentation"><a href="#">View</a></li>
+  <li role="presentation"><a class="nav_view" href="#">View</a></li>
 
   <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Raw<span class="caret"></span></a>
     <ul class="dropdown-menu">
@@ -25,49 +25,49 @@
   </div>
 </div>
 
-<div class='container-fluid MDV-main-container'>
-<div class='row-fluid'>
-    <div class='col-md-3 viewer_sidebar' id="MDV-sidebar<%= id_suffix %>">
-        <table width="100%">
-          <thead>
-            <th></th><th></th>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+<div class='viewer_main_container'>
 
-          <form name="view_input" class="view_input" >
-            <div class="form-group">
-              <label>Selection</label>
-              <input name="selection" class="form-control" type="text" placeholder="Selection"></input>
-            </div>
-            <div class="form-group">
-              <label>Mode</label>
-              <select name="mode" class="form-control">
-                <option value="cartoon">Cartoon</option>
-                <option value="spheres">Spheres</option>
-                <option value="lines">Lines</option>
-                <option value="ballsAndSticks">Balls and Sticks</option>
-                <option value="points">Points</option>
-                <option value="tube">Tube</option>
-                <option value="trace">Trace</option>
-                <option value="sline">Smooth Line Trace</option>
-                <option value="lineTrace">Line Trace</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Color</label>
-              <input name="color" class="form-control" type="text" placeholder="Color" list="color_options"></input>
-              <datalist id="color_options">
-              </datalist>
-            </div>
+<div class='viewer_sidebar_container' id="MDV-sidebar<%= id_suffix %>">
+  <div class='viewer_sidebar'>
+  <table width="100%">
+    <thead>
+      <th></th><th></th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 
-            <button type="button" class="add_view btn btn-primary btn-lg btn-block">Add</button>
-          </form>
-        
+  <form name="view_input" class="view_input" >
+    <div class="form-group">
+      <label>Selection</label>
+      <input name="selection" class="form-control" type="text" placeholder="Selection"></input>
+    </div>
+    <div class="form-group">
+      <label>Mode</label>
+      <select name="mode" class="form-control">
+        <option value="cartoon">Cartoon</option>
+        <option value="spheres">Spheres</option>
+        <option value="lines">Lines</option>
+        <option value="ballsAndSticks">Balls and Sticks</option>
+        <option value="points">Points</option>
+        <option value="tube">Tube</option>
+        <option value="trace">Trace</option>
+        <option value="sline">Smooth Line Trace</option>
+        <option value="lineTrace">Line Trace</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Color</label>
+      <input name="color" class="form-control" type="text" placeholder="Color" list="color_options"></input>
+      <datalist id="color_options">
+      </datalist>
     </div>
 
-    <div class='col-md-9 viewer_container' id="MDV-viewer<%= id_suffix %>">
-    </div>
+    <button type="button" class="add_view btn btn-primary btn-lg btn-block">Add</button>
+  </form>
+  </div>
 </div>
+
+<div class='viewer_content' id="MDV-viewer<%= id_suffix %>"> </div>
+
 </div>

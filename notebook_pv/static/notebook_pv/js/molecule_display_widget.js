@@ -13,8 +13,8 @@ define([
     "tpl!../templates/molecule_display_view",
     "tpl!../templates/molecule_display_view-view_table",
     "css!../css/molecule_display_view.css",
-    "./detect-element-resize"],
-    function($, _underscore, widget, manager, pv, view_template, view_table_template, _css, _resize){
+    "./element-resize-detector"],
+    function($, _underscore, widget, manager, pv, view_template, view_table_template, _css, elementResizeDetectorMaker){
     
     var MoleculeDisplayView = widget.DOMWidgetView.extend({
         
@@ -30,13 +30,16 @@ define([
             
             // Layout view
             this.$el.html(view_template( {id_suffix : this.id_suffix} ));
+            _.defer(_.bind(this.render_viewer, this)); 
+        },
 
+        render_viewer: function() {
             // Setup view event handlers
             this.$el.on("click", "button.add_view", _.partial(this.handle_add_view, this));
             this.$el.on("click", "button.delete_view", _.partial(this.handle_delete_view, this));
             
             // Setup viewer component
-            this.viewer_container = this.$el.find(".viewer_container")[0];
+            this.viewer_container = this.$el.find(".viewer_content")[0];
 
             // Set initial viewer dimensions to non-zero values
             // Viewer will be resized to fit container view via resize event
@@ -50,11 +53,40 @@ define([
 
             // Setup view render and resize handlers
             this.viewer.addListener('viewerReady', _.bind(this.render_views, this));
-            window.addResizeListener(this.viewer_container , _.bind(this.viewer.fitParent, this.viewer));
+
+            this.erd = elementResizeDetectorMaker( { strategy: "scroll" });
+            this.erd.listenTo( this.$el.find(".viewer_content")[0], _.bind(this.handle_reflow, this));
+
+            this.$el.on("click", ".nav_view", _.bind(this.handle_nav_start, this) );
+            this.$el.on("transitionend", ".viewer_sidebar_container", _.bind(this.handle_nav_end, this));
 
             this.listenTo(this.model, "change:views", this.render_views);
             this.listenTo(this.model, "change:structure", this.render_views);
+            // TODO trigger animation events with throttled reflow handler
         },
+
+        handle_nav_start : function() {
+          this.in_reflow = true;
+          this.$el.find(".viewer_main_container").toggleClass('hide_sidebar');
+
+          window.requestAnimationFrame( _.bind( this.reflow_animation_handler, this) );
+        },
+
+        reflow_animation_handler : function() {
+          this.handle_reflow();
+
+          if ( this.in_reflow ) {
+            window.requestAnimationFrame( _.bind( this.reflow_animation_handler, this) );
+          }
+        },
+
+        handle_nav_end : function() {
+          this.in_reflow = false;
+        },
+
+        handle_reflow : _.throttle(function() {
+          this.viewer.fitParent();
+        }, 5),
 
         handle_add_view : function(self) {
             var this_button = this;
@@ -95,8 +127,8 @@ define([
         },
         
         render_views : function(){
-            this.$el.find(".MDV-object-modal .modal-body pre").text( JSON.stringify(this.model.get("structure"), null, 2));
-            this.$el.find(".MDV-main-container .viewer_sidebar tbody").html( view_table_template( { views : this.model.get("views") }) );
+            this.$el.find(".modal-body pre").text( JSON.stringify(this.model.get("structure"), null, 2));
+            this.$el.find(".viewer_sidebar tbody").html( view_table_template( { views : this.model.get("views") }) );
             
             this.structure = pv.mol.docmodel.objToMol(this.model.get("structure"));
             pv.mol.assignHelixSheet( this.structure );

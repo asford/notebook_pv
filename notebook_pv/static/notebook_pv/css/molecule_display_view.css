@@ -2,12 +2,39 @@
 .MoleculeDisplayView {
   width: 100%;
 }
-.MoleculeDisplayView .MDV-main-container{
-  width: 100%;
+.MoleculeDisplayView .viewer_main_container {
+  display: flex;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
 }
 
-.MoleculeDisplayView .viewer_container{
+.MoleculeDisplayView .viewer_sidebar_container {
+  width: 300px;
+  margin-right: 10px;
+  overflow: hidden;
+
+  transition: width 1s, margin-right 1s;
+}
+
+.MoleculeDisplayView .viewer_main_container.hide_sidebar .viewer_sidebar_container
+{
+  width: 0px;
+  margin-right: 0px;
+}
+
+.MoleculeDisplayView .viewer_sidebar {
+  min-width: 300px;
+}
+
+.MoleculeDisplayView .viewer_content {
   height: 80vh;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 200px;
 }
 
 .MoleculeDisplayView .viewer_sidebar .btn-group.view_control {
