@@ -13,8 +13,7 @@
 }
 
 .MoleculeDisplayView .viewer_sidebar_container {
-  width: 300px;
-  margin-right: 10px;
+  width: 500px;
   overflow: hidden;
 
   transition: width 1s, margin-right 1s;
@@ -23,11 +22,11 @@
 .MoleculeDisplayView .viewer_main_container.hide_sidebar .viewer_sidebar_container
 {
   width: 0px;
-  margin-right: 0px;
 }
 
 .MoleculeDisplayView .viewer_sidebar {
-  min-width: 300px;
+  min-width: 500px;
+  padding: 10px;
 }
 
 .MoleculeDisplayView .viewer_content {
